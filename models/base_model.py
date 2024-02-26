@@ -2,7 +2,7 @@
 """BaseModel"""
 
 
-from uuid import uuid4
+import uuid
 from datetime import datetime
 #The UUID module in Python helps us to create unique identifiers for objects
 #The datetime module provides us with classes to manipulate dates and times
@@ -10,7 +10,7 @@ from datetime import datetime
 
 class BaseModel:
     """This class defines all common attributes/methods for other classes."""
-    id = str(uuid4())
+    id = str(uuid.uuid4())
     created_at = datetime.now()
     updated_at = datetime.now()
 
@@ -20,7 +20,9 @@ class BaseModel:
         Returns:
             Returns a string representation.
         """
-        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__
+        )
 
     def save(self):
         """save() method
@@ -40,8 +42,8 @@ class BaseModel:
         """
         dict_object = self.__dict__.copy()
 
-        dict_object[ '__class__' ] = self.__class__.__name__
-        dict_object[ 'created_at' ] = self.created_at.isoformat()
-        dict_object[ 'updated_at' ] = self.updated_at.isoformat()
+        dict_object['__class__'] = self.__class__.__name__
+        dict_object['created_at'] = self.created_at.isoformat()
+        dict_object['updated_at'] = self.updated_at.isoformat()
 
         return dict_object
