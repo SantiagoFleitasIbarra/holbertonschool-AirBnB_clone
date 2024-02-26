@@ -4,8 +4,8 @@
 
 import uuid
 from datetime import datetime
-#The UUID module in Python helps us to create unique identifiers for objects
-#The datetime module provides us with classes to manipulate dates and times
+# The UUID module in Python helps us to create unique identifiers for objects
+# The datetime module provides us with classes to manipulate dates and times
 
 
 class BaseModel:
