@@ -10,9 +10,16 @@ from datetime import datetime
 
 class BaseModel:
     """This class defines all common attributes/methods for other classes."""
-    id = str(uuid.uuid4())
-    created_at = datetime.now()
-    updated_at = datetime.now()
+
+    def __init__(self):
+        """__init__() method
+
+        Description::
+            Initializes id, created_at, and updated_at as class attributes.
+        """
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
     def __str__(self):
         """__str__() method
@@ -20,9 +27,7 @@ class BaseModel:
         Returns:
             Returns a string representation.
         """
-        return "[{}] ({}) {}".format(
-            self.__class__.__name__, self.id, self.__dict__
-        )
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """save() method
