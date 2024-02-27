@@ -2,7 +2,7 @@
 """BaseModel"""
 
 
-import uuid
+from uuid import uuid4
 from datetime import datetime
 # The UUID module in Python helps us to create unique identifiers for objects
 # The datetime module provides us with classes to manipulate dates and times
@@ -11,15 +11,30 @@ from datetime import datetime
 class BaseModel:
     """This class defines all common attributes/methods for other classes."""
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """__init__() method
 
-        Description::
-            Initializes id, created_at, and updated_at as class attributes.
+        Args:
+            args:
+                asd
+            kwargs:
+                asd
+
+        Description:
+            asd
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            del kwargs['__class__']
+            for key, value in kwargs.items():
+                if key == 'created_at' or key == 'update_at':
+                    time_obj = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, key, time_obj)
+                else:
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """__str__() method
