@@ -16,12 +16,14 @@ class BaseModel:
 
         Args:
             args:
-                asd
+                Unused positional arguments.
             kwargs:
-                asd
+                Dictionary representation of an instance.
 
         Description:
-            asd
+            When initialized with a dictionary, let's have a
+            way to create that instance, otherwise, we will be
+            guided by our already shaped instance attributes.
         """
         if kwargs:
             del kwargs['__class__']
