@@ -40,7 +40,7 @@ class FileStorage():
         """
         obj_dict = {}
 
-        for key, value in self.__objects.items():
+        for key, value in FileStorage.__objects.items():
             obj_dict[key] = value.to_dict()
             with open(FileStorage.__file_path, "w") as file:
                 json.dump(obj_dict, file)
