@@ -13,8 +13,8 @@ class FileStorage():
     file and deserializes JSON file to instances."""
 
 
-# __file_path = "file.json"  #  private class attribute
-# __objects = {}  #  private class attribute
+    __file_path = "file.json"  #  private class attribute
+    __objects = {}  #  private class attribute
 
     def all(self):
         """all() method
@@ -30,7 +30,8 @@ class FileStorage():
         Description:
             sets in __objects the obj
         """
-        self.__objects[f"{self.__class__.__name__}.{obj.id}"] = obj
+        key = "{}.{}".format(self.__class__.__name__, obj.id)
+        obj.__objects[key] = obj
 
     def save(self):
         """save() method
@@ -41,7 +42,9 @@ class FileStorage():
         obj_dict = {}
 
         for key, value in self.__objects.items():
-            pass
+            obj_dict[key] = value.to_dict()
+            with open(FileStorage.__file_path, "w") as fileJsn:
+                json.dump(obj_dict, fileJsn)
 
     def reload(self):
         """reload() method
