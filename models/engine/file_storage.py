@@ -12,8 +12,8 @@ class FileStorage():
     """That serializes instances to a JSON
     file and deserializes JSON file to instances."""
 
-    __file_path = "file.json" # private class attribute
-    __objects = {} # private class attribute
+    __file_path = "file.json"  #  private class attribute
+    __objects = {}  #  private class attribute
 
     def all(self):
         """all() method
@@ -35,7 +35,7 @@ class FileStorage():
         """save() method
 
         Description:
-            serialize __object to the json file 
+            serialize __object to the json file
         """
         obj_dict = {}
 
