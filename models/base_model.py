@@ -12,6 +12,7 @@ class BaseModel:
     """This class defines all common attributes/methods for other classes."""
 
     def __init__(self, *args, **kwargs):
+        from models import storage  # Import the storage variable.
         """__init__() method
 
         Args:
@@ -37,6 +38,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new(self)
 
     def __str__(self):
         """__str__() method
@@ -47,6 +49,7 @@ class BaseModel:
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
+        from models import storage  # Import the storage variable.
         """save() method
 
         Description:
@@ -54,6 +57,7 @@ class BaseModel:
             date and time each time we make changes to our class instance.
         """
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """to_dict() method

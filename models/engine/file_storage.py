@@ -30,7 +30,7 @@ class FileStorage():
             sets in __objects the obj
         """
         key = "{}.{}".format(self.__class__.__name__, obj.id)
-        obj.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """save() method
@@ -42,8 +42,8 @@ class FileStorage():
 
         for key, value in self.__objects.items():
             obj_dict[key] = value.to_dict()
-            with open(FileStorage.__file_path, "w") as fileJsn:
-                json.dump(obj_dict, fileJsn)
+            with open(FileStorage.__file_path, "w") as file:
+                json.dump(obj_dict, file)
 
     def reload(self):
         """reload() method
@@ -51,4 +51,19 @@ class FileStorage():
         Description:
             deserializes the JSON file to __objects
         """
-        pass
+
+        # Defclass dictionary to contain all user-defined classes to
+        # be used to recreate class instances (objects).
+        defclass = {
+            'BaseModel': BaseModel
+            }
+
+        try:
+            with open(FileStorage.__file_path) as file:
+                deserialized = json.load(file)
+                for value in deserialized.values():
+                    classname = value["__class__"]
+                    classobj = defclass[classname]
+                    self.new(classobj(**value))
+        except FileNotFoundError:
+            pass
