@@ -38,12 +38,11 @@ class FileStorage():
         Description:
             serialize __object to the json file
         """
-        obj_dict = {}
-
-        for key, value in FileStorage.__objects.items():
-            obj_dict[key] = value.to_dict()
-            with open(FileStorage.__file_path, "w") as file:
-                json.dump(obj_dict, file)
+        with open(FileStorage.__file_path, "w") as file:
+            obj_dict = {}
+            for key, value in FileStorage.__objects.items():
+                obj_dict[key] = value.to_dict()
+            json.dump(obj_dict, file)
 
     def reload(self):
         """reload() method
