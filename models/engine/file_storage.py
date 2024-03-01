@@ -58,11 +58,12 @@ class FileStorage():
             }
 
         try:
-            with open(FileStorage.__file_path) as file:
+            with open(FileStorage.__file_path, "r") as file:
                 deserialized = json.load(file)
-                for value in deserialized.values():
+                for key, value in deserialized.items():
                     classname = value["__class__"]
-                    classobj = defclass[classname]
-                    self.new(classobj(**value))
+                    if classname in defclass:
+                        classobj = defclass[classname]
+                        self.new(classobj(**value))
         except FileNotFoundError:
             pass
