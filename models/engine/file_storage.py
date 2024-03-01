@@ -63,8 +63,7 @@ class FileStorage():
                 for key, value in deserialized.items():
                     classname = value["__class__"]
                     if classname in defclass:
-                        classobj = defclass[classname]
-                        instance = classobj(**value)
-                        self.__objects[key] = instance
+                        newobj = eval(classname)(**value)
+                        self.__objects[key] = newobj
         except FileNotFoundError:
             pass
