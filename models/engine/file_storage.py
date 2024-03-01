@@ -57,14 +57,24 @@ class FileStorage():
             'BaseModel': BaseModel
         }
 
+        #try:
+            #with open(FileStorage.__file_path, "r") as file:
+                #deserialized = json.load(file)
+                #for key, value in deserialized.items():
+                    #classname = value["__class__"]
+                    #if classname in defclass:
+                        #newobj = defclass[classname](**value)
+                        #key = "{}.{}".format(classname, newobj.id)
+                        #FileStorage.__objects[key] = newobj
+        #except FileNotFoundError:
+            #pass
+
         try:
             with open(FileStorage.__file_path, "r") as file:
                 deserialized = json.load(file)
-                for key, value in deserialized.items():
-                    classname = value["__class__"]
-                    if classname in defclass:
-                        newobj = defclass[classname](**value)
-                        key = "{}.{}".format(classname, newobj.id)
-                        FileStorage.__objects[key] = newobj
+                for value in deserialized.values():
+                    classname = value['__class__']
+                    newobj = defclass[classname](**value)
+                    self.new(newobj)
         except FileNotFoundError:
             pass
