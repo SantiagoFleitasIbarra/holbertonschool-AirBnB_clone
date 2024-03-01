@@ -64,6 +64,7 @@ class FileStorage():
                     classname = value["__class__"]
                     if classname in defclass:
                         classobj = defclass[classname]
-                        self.new(classobj(**value))
-        except:
-            return
+                        instance = classobj(**value)
+                        self.new(instance)
+        except FileNotFoundError:
+            pass
