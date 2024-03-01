@@ -60,7 +60,7 @@ class FileStorage():
         try:
             with open(FileStorage.__file_path, "r") as file:
                 deserialized = json.load(file)
-                for key, value in deserialized.items():
+                for value in deserialized.values():
                     classname = value["__class__"]
                     if classname in defclass:
                         classobj = defclass[classname]
