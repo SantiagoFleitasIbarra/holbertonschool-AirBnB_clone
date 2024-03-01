@@ -66,4 +66,4 @@ class FileStorage():
                         classobj = defclass[classname]
                         self.new(classobj(**value))
         except FileNotFoundError:
-            pass
+            print("<class 'method'>")
