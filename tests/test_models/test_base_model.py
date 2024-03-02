@@ -8,6 +8,7 @@ from models.base_model import BaseModel # Import the class BaseModel.
 
 
 class TestBaseModel(unittest.TestCase):
+    """Tests"""
 
     def test_attributes(self):
         """Test BaseModel attributes initialization"""
