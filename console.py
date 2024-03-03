@@ -3,7 +3,7 @@
 
 
 import cmd  # importing the cmd module
-import shlex # Divide una cadena en una lista tokens
+import shlex  # Divide una cadena en una lista tokens
 import models
 import re
 import ast
