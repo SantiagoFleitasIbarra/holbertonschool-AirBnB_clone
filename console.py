@@ -174,7 +174,7 @@ class HBNBCommand(cmd.Cmd):
         return (argumentString)
 
     def help_count(self):
-        print("\n\
+        print("")
 
     def count_instance(self, arg):
         """retrieves number of instances of a class"""
