@@ -88,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
         print(listOfObjectToPrint)
 
     def do_update(self, line):
- 
+
         lineArgs = shlex.split(line)
         ArgLineDict = None
         if not self.verify_class_in_project(lineArgs):
