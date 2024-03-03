@@ -39,6 +39,7 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """Empty line"""
         pass
+
     def do_create(self, arg):
 
         lineAsArgs = shlex.split(arg)
@@ -49,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
         newInstance.save()
 
     def do_show(self, arg):
-       
+
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
             return
@@ -71,7 +72,7 @@ class HBNBCommand(cmd.Cmd):
         models.storage.save()
 
     def do_all(self, arg):
- 
+
         lineAsArgs = shlex.split(arg)
         objectsInStorage = models.storage.all()
         listOfObjectToPrint = []
