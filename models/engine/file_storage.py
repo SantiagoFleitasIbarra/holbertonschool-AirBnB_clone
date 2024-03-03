@@ -20,10 +20,6 @@ import json
 # This imports the module json
 
 
-classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
-           "Place": Place, "Review": Review, "State": State, "User": User}
-
-
 class FileStorage():
     """That serializes instances to a JSON
     file and deserializes JSON file to instances."""
