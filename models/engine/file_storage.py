@@ -3,10 +3,25 @@
 
 
 from models.base_model import BaseModel
+from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 import json
 # This imports the module base_model to use its base class "BaseModel".
+# This import the User class
+# This import the Amenity class
+# This import the city class
+# This import the place class
+# This import the review class
+# This import the review class
 # This imports the module json
 
+
+classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
+           "Place": Place, "Review": Review, "State": State, "User": User}
 
 class FileStorage():
     """That serializes instances to a JSON

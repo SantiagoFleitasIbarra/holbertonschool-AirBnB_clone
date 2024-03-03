@@ -3,6 +3,7 @@
 
 
 import cmd  # importing the cmd module
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
