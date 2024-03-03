@@ -3,6 +3,11 @@
 
 
 import cmd  # importing the cmd module
+import shlex # Divide una cadena en una lista tokens
+import models
+import re
+import ast
+import inspect
 from models.user import User
 from models.base_model import BaseModel
 from models.city import City
