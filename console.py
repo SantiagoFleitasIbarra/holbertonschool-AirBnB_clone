@@ -133,8 +133,13 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
         attribute_name = arg_list[2]
-        if attribute_name == "id" or attribute_name == \
-            "created_at" or attribute_name == "updated_at":
+        if attribute_name == "id":
+            print("** cannot update reserved attribute **")
+            return
+        elif attribute_name == "created_at":
+            print("** cannot update reserved attribute **")
+            return
+        elif attribute_name == "updated_at":
             print("** cannot update reserved attribute **")
             return
         new_value = " ".join(arg_list[3:])
