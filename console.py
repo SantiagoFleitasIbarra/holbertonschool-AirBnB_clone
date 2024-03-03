@@ -133,7 +133,8 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
         attribute_name = arg_list[2]
-        if attribute_name == "id" or attribute_name == "created_at" or attribute_name == "updated_at":
+        if attribute_name == "id" or attribute_name == \
+            "created_at" or attribute_name == "updated_at":
             print("** cannot update reserved attribute **")
             return
         new_value = " ".join(arg_list[3:])
@@ -143,6 +144,7 @@ class HBNBCommand(cmd.Cmd):
         instance = all_objects[key]
         setattr(instance, attribute_name, new_value)
         instance.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
