@@ -66,7 +66,13 @@ class FileStorage():
         # Defclass dictionary to contain all user-defined classes to
         # be used to recreate class instances (objects).
         defclass = {
-            'BaseModel': BaseModel
+            'BaseModel': BaseModel,
+            'User': User,
+            'Amenity': Amenity,
+            'City': City,
+            'Place': Place,
+            'Review': Review,
+            'State': State
         }
 
         try:
