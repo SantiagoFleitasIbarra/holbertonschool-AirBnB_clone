@@ -21,6 +21,11 @@ class HBNBCommand(cmd.Cmd):
     """Command interpreter"""
 
     prompt = "(hbnb) "
+    listOfProjectClass = ["BaseModel", "City", "Place", "Review", "State",
+                          "User", "Amenity"]
+    intAttrs = ["number_rooms", "number_bathrooms", "max_guest",
+                "price_by_night"]
+    floatAttrs = ["latitude", "longitude"]
 
     def do_quit(self, line):
         """Quit command to exit the program\n"""
