@@ -65,7 +65,7 @@ class FileStorage():
 
         # Defclass dictionary to contain all user-defined classes to
         # be used to recreate class instances (objects).
-        defclass = {
+        self.defclass = {
             'BaseModel': BaseModel,
             'User': User,
             'Amenity': Amenity,
@@ -80,8 +80,8 @@ class FileStorage():
                 deserialized = json.load(file)
                 for key, value in deserialized.items():
                     classname = value["__class__"]
-                    if classname in defclass:
-                        newobj = defclass[classname](**value)
+                    if classname in self.defclass:
+                        newobj = self.defclass[classname](**value)
                         key = "{}.{}".format(classname, newobj.id)
                         FileStorage.__objects[key] = newobj
         except FileNotFoundError:
