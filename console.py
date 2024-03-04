@@ -113,17 +113,16 @@ class HBNBCommand(cmd.Cmd):
         Prints all string representation of all instances
         Usage: all <class_name> or all
         """
+        instances = []
         if arg:
             class_name = arg.split()[0]
             if class_name not in storage.defclass:
                 print("** class doesn't exist **")
                 return
-            instances = []
             for key, instance in storage.all().items():
                 if key.startswith(class_name + "."):
                     instances.append(str(instance))
         else:
-            instances = []
             for instance in storage.all().values():
                 instances.append(str(instance))
         print(instances)
