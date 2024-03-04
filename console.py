@@ -38,10 +38,13 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
+
         classes = storage.defclass.keys()
+
         if arg not in classes:
             print("** class doesn't exist **")
             return
+
         new_instance = storage.defclass[arg]()
         new_instance.save()
         print(new_instance.id)
@@ -53,20 +56,26 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
+
         arg_list = arg.split()
         class_name = arg_list[0]
+
         if class_name not in storage.defclass:
             print("** class doesn't exist **")
             return
+
         if len(arg_list) < 2:
             print("** instance id missing **")
             return
+
         obj_id = arg_list[1]
         key = "{}.{}".format(class_name, obj_id)
         all_objects = storage.all()
+
         if key not in all_objects:
             print("** no instance found **")
             return
+
         print(all_objects[key])
 
     def do_destroy(self, arg):
@@ -76,20 +85,26 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
+
         arg_list = arg.split()
         class_name = arg_list[0]
+
         if class_name not in storage.defclass:
             print("** class doesn't exist **")
             return
+
         if len(arg_list) < 2:
             print("** instance id missing **")
             return
+
         obj_id = arg_list[1]
         key = "{}.{}".format(class_name, obj_id)
         all_objects = storage.all()
+
         if key not in all_objects:
             print("** no instance found **")
             return
+
         del all_objects[key]
         storage.save()
 
@@ -119,20 +134,34 @@ class HBNBCommand(cmd.Cmd):
         """
         arg_list = arg.split()
 
-        if len(arg_list) < 4:
-            print("** not enough arguments **")
+        if not arg:
+            print("** class name missing **")
             return
+
         class_name = arg_list[0]
+
         if class_name not in storage.defclass:
             print("** class doesn't exist **")
             return
+
+        if len(arg_list) < 2:
+            print("** instance id missing **")
+            return
+
+        if len(arg_list) < 3:
+            print("** attribute name missing **")
+            return
+
         obj_id = arg_list[1]
         all_objects = storage.all()
         key = "{}.{}".format(class_name, obj_id)
+
         if key not in all_objects:
             print("** no instance found **")
             return
+
         attribute_name = arg_list[2]
+
         if attribute_name == "id":
             print("** cannot update reserved attribute **")
             return
@@ -142,10 +171,13 @@ class HBNBCommand(cmd.Cmd):
         elif attribute_name == "updated_at":
             print("** cannot update reserved attribute **")
             return
+
         new_value = " ".join(arg_list[3:])
+
         if not new_value:
             print("** value missing **")
             return
+
         instance = all_objects[key]
         setattr(instance, attribute_name, new_value)
         instance.save()
